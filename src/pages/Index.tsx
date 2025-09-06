@@ -18,7 +18,7 @@ const Index = () => {
     type: 'all',
     location: 'global',
     rarity: 'all',
-    dateRange: 'upcoming'
+    dateRange: 'all'
   });
 
   const filteredEvents = useMemo(() => {
