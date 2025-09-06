@@ -47,6 +47,12 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Celestial Event Colors
+        solar: "hsl(var(--solar))",
+        lunar: "hsl(var(--lunar))",
+        planetary: "hsl(var(--planetary))",
+        rare: "hsl(var(--rare))",
+        aurora: "hsl(var(--aurora))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -62,6 +68,17 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      backgroundImage: {
+        'cosmic': 'var(--gradient-cosmic)',
+        'aurora': 'var(--gradient-aurora)',
+        'nebula': 'var(--gradient-nebula)',
+        'solar': 'var(--gradient-solar)',
+      },
+      boxShadow: {
+        'cosmic': 'var(--shadow-cosmic)',
+        'stellar': 'var(--shadow-stellar)',
+        'aurora': 'var(--shadow-aurora)',
       },
       keyframes: {
         "accordion-down": {
@@ -80,10 +97,30 @@ export default {
             height: "0",
           },
         },
+        "stellar-pulse": {
+          "0%, 100%": {
+            opacity: "0.8",
+            transform: "scale(1)",
+          },
+          "50%": {
+            opacity: "1",
+            transform: "scale(1.02)",
+          },
+        },
+        "cosmic-glow": {
+          from: {
+            boxShadow: "0 0 20px hsl(var(--primary) / 0.2)",
+          },
+          to: {
+            boxShadow: "0 0 40px hsl(var(--primary) / 0.4)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "stellar-pulse": "stellar-pulse 3s ease-in-out infinite",
+        "cosmic-glow": "cosmic-glow 4s ease-in-out infinite alternate",
       },
     },
   },
