@@ -26,6 +26,20 @@ const CelestialCalendar: React.FC<CelestialCalendarProps> = ({
 
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+  const getEventsForDate = (date: Date): CelestialEvent[] => {
+    return celestialEvents.filter(event => {
+      const eventDate = new Date(event.date);
+      return isSameDay(eventDate, date) || 
+        (event.endDate && date >= eventDate && date <= new Date(event.endDate));
+    });
+  };
+
+  const isSameDay = (date1: Date, date2: Date): boolean => {
+    return date1.getDate() === date2.getDate() &&
+           date1.getMonth() === date2.getMonth() &&
+           date1.getFullYear() === date2.getFullYear();
+  };
+
   const calendarDays = useMemo(() => {
     const year = currentMonth.getFullYear();
     const month = currentMonth.getMonth();
@@ -78,20 +92,6 @@ const CelestialCalendar: React.FC<CelestialCalendarProps> = ({
     
     return days;
   }, [currentMonth, selectedDate]);
-
-  const getEventsForDate = (date: Date): CelestialEvent[] => {
-    return celestialEvents.filter(event => {
-      const eventDate = new Date(event.date);
-      return isSameDay(eventDate, date) || 
-        (event.endDate && date >= eventDate && date <= new Date(event.endDate));
-    });
-  };
-
-  const isSameDay = (date1: Date, date2: Date): boolean => {
-    return date1.getDate() === date2.getDate() &&
-           date1.getMonth() === date2.getMonth() &&
-           date1.getFullYear() === date2.getFullYear();
-  };
 
   const navigateMonth = (direction: 'prev' | 'next') => {
     setCurrentMonth(prev => {
